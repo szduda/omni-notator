@@ -2,7 +2,7 @@
 import { useRef, forwardRef } from 'react'
 import { jsx, css, } from '@emotion/core'
 import { Box } from './Box'
-import { sortByIndex } from '../../appHelper'
+import { sortByDate } from '../../appHelper'
 import { AddNoteForm, AddFormTrigger } from './AddNote'
 
 const Wrapper = forwardRef((props, ref) => (
@@ -32,7 +32,7 @@ export const Notelist = ({ useNotelistContext }) => {
   return (
     <Wrapper ref={formRef}>
       <AddNoteForm onSubmit={submitForm} formVisible={visibility.form} />
-      {notes.sort(sortByIndex).map((item, key) =>
+      {notes.sort(sortByDate).map((item, key) =>
         <Box {...{
           key,
           item,

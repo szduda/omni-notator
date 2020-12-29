@@ -1,7 +1,6 @@
-
 export const getNextId = () => generateId.next().value
 
-export const sortByIndex = (o1, o2) => o1.index - o2.index
+export const sortByDate = (o1, o2) => o2.date - o1.date
 
 function* idGenerator() {
   let i = 1000

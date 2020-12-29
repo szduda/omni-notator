@@ -36,14 +36,13 @@ const validate = ({ markdownText }, setValid) => {
 
 export const AddNoteForm = ({ onSubmit, formVisible, ...rest }) => {
   const [item, setItem] = useState({
-    date: Date.now(),
     markdownText: '',
   })
   const [isValid, setValid] = useState(true)
 
   const submit = e => {
     e.preventDefault();
-    return validate(item, setValid) && onSubmit(item)
+    return validate(item, setValid) && onSubmit({...item, date: Date.now()})
   }
 
   return (
@@ -61,7 +60,7 @@ export const AddNoteForm = ({ onSubmit, formVisible, ...rest }) => {
         border-radius: 4px;
         background: ${colors.white};
       `}>
-        <Textbox wide value={new Date(item.date).toLocaleString()} disabled />
+        <Textbox wide value={new Date().toLocaleString()} disabled />
         <Textbox
           wide
           label="Markdown text"

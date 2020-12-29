@@ -7,7 +7,7 @@ export const notelistReducer = (state, action) => {
     case 'addNote':
       return {
         ...state,
-        [state.length]: payload.note
+        [payload.note.id]: payload.note
       }
     case 'setNotes':
       return {

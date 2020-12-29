@@ -23,10 +23,10 @@ export const useNotelist = ({ DataService }) => {
       const tempItem = { ...note, id: getNextId() }
       actions.notelist.addNote({ note: tempItem })
       const id = await DataService.addNote({ note })
-      actions.notelist.updateNote({
-        id: tempItem.id,
-        note: { id }
-      })
+      // actions.notelist.updateNote({
+      //   id: tempItem.id,
+      //   note: { id }
+      // })
     }
 
     const deleteNote = id => actions.notelist.deleteNote({ id })
