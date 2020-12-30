@@ -14,25 +14,20 @@ export const useNoteView = ({ DataService }) => {
     const dateParam = Number(getRouteParam({ pathname, param: 'note' }))
 
     const [shouldRefresh, setShouldRefresh] = useState(!!!Object.keys(state.notelist || {}).length)
-    const [note, setNote] = useState(shouldRefresh ? null : getters.getNote({ date: dateParam }))
 
     useEffect(() => {
-      const asyncEffect = async () => {
-        setNotes.current({ notes: await fetchNotes.current() })
-        setShouldRefresh(false)
-      }
-      shouldRefresh && asyncEffect()
+      if (!shouldRefresh) return
+      setNotes.current({ notes: fetchNotes.current() })
+      setShouldRefresh(false)
     }, [fetchNotes, setNotes, shouldRefresh])
 
-    useEffect(() => {
-      const currentNote = getters.getNote({ date: dateParam })
-      setNote(currentNote)
-    }, [dateParam, getters])
+    const note = getters.getNote({ date: dateParam })
 
     const deleteNote = () => {
       actions.notelist.deleteNote({ date: note?.date })
       DataService.deleteNote({ date: note?.date })
     }
+
     const redirectGuard = !shouldRefresh && !!!note && <Redirect to={'/'} />
 
     return { note, deleteNote, redirectGuard }

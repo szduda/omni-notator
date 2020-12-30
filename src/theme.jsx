@@ -123,6 +123,21 @@ export const Theme = props => (
       margin: 8px 16px 20px 0;
     }
 
+    h1, h2, h3, h4, h5 {
+      margin: 0;
+      font-size: 16px;
+      line-height: 1.25;
+    }
+
+    h1 {
+      margin-top: 4px;
+      font-size: 24px;
+    }
+
+    h2 {
+      font-size: 20px;
+    }
+
     p {
       font-size: 16px;
       line-height: 24px;
@@ -160,7 +175,7 @@ export const Button = ({ ...rest }) => (
   `} {...rest} />
 )
 
-export const FAB = ({ top, ...rest }) => (
+export const RoundButton = ({ top, ...rest }) => (
   <Button css={css`
     cursor: pointer;
     z-index: 1000;

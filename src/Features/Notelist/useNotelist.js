@@ -17,13 +17,12 @@ export const useNotelist = ({ DataService }) => {
     const [shouldRefresh, setShouldRefresh] = useState(!!!Object.keys(state.notelist || {}).length)
 
     useEffect(() => {
-      if (shouldRefresh) {
-        setNotes.current({ notes: fetchNotes.current() })
-        setShouldRefresh(false)
-      }
+      if (!shouldRefresh) return
+      setNotes.current({ notes: fetchNotes.current() })
+      setShouldRefresh(false)
     }, [fetchNotes, setNotes, shouldRefresh])
 
-    const addNote = async note => {
+    const addNote = note => {
       const tempItem = { ...note, id: getNextId() }
       actions.notelist.addNote({ note: tempItem })
       DataService.addNote({ note })
@@ -34,8 +33,8 @@ export const useNotelist = ({ DataService }) => {
       DataService.deleteNote({ date })
     }
 
-
     const notes = Object.values(notelist);
+    
     return { notes, addNote, deleteNote, visibility, setVisibility }
   }
 

@@ -1,9 +1,10 @@
 /** @jsx jsx */
 import { useRef, forwardRef } from 'react'
-import { jsx, css, } from '@emotion/core'
+import { jsx, css } from '@emotion/core'
 import { Box } from '../../Components/Box'
 import { sortByDate } from '../../appHelper'
 import { AddNoteForm, AddFormTrigger } from '../../Components/AddNote'
+import { colors } from '../../theme'
 
 const Wrapper = forwardRef((props, ref) => (
   <div ref={ref} css={css`
@@ -13,13 +14,22 @@ const Wrapper = forwardRef((props, ref) => (
   `} {...props} />
 ))
 
+const EmptyList = () => (
+  <h3 css={css`
+    padding-left: 12px;
+    font-weight: 400;
+    color: ${colors.white};
+  `}>
+    Your notepad is empty
+  </h3>
+)
 
 export const Notelist = ({ useNotelistContext }) => {
   const { notes, addNote, deleteNote, visibility, setVisibility } = useNotelistContext()
 
   const addNoteClick = () => {
     setVisibility({ form: !visibility.form })
-    if (visibility.form) {
+    if (!visibility.form) {
       formRef.current.scrollIntoView({ block: 'start', behavior: 'smooth' })
     }
   }
@@ -34,6 +44,7 @@ export const Notelist = ({ useNotelistContext }) => {
   return (
     <Wrapper ref={formRef}>
       <AddNoteForm onSubmit={submitForm} formVisible={visibility.form} />
+      {(!notes || !notes.length) && <EmptyList />}
       {notes.sort(sortByDate).map((item, key) =>
         <Box {...{
           key,

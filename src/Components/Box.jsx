@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { Link } from 'react-router-dom';
 import { jsx, css, } from '@emotion/core'
-import { colors, Flex, FAB, Icons } from '../theme'
+import { colors, Flex, RoundButton, Icons } from '../theme'
 import ReactMarkdown from 'react-markdown'
 
 const Wrapper = ({ collapsed, ...rest }) => (
@@ -13,8 +13,6 @@ const Wrapper = ({ collapsed, ...rest }) => (
       padding: 0 16px;
       margin: 0 0 8px 0;
       border-radius: 4px;
-      font-size: 12px;
-      line-height: 14px;
       box-shadow: 0 2px 4px 0 ${colors.grayDark}44;
       position: relative;
       overflow: hidden;
@@ -22,7 +20,7 @@ const Wrapper = ({ collapsed, ...rest }) => (
 )
 
 const DeleteNoteButton = ({ deleteNote }) => (
-  <FAB
+  <RoundButton
     top
     onClick={deleteNote}
     css={css`
@@ -34,18 +32,18 @@ const DeleteNoteButton = ({ deleteNote }) => (
       z-index: 100;
   `}>
     <Icons.Delete />
-  </FAB>
+  </RoundButton>
 )
 
-const DateTitle = ({ date }) => (
+const DateTitle = ({ date, rich }) => (
   <h2 css={css`
-    margin: 8px 0;
+    margin: 8px 0 4px !important;
     font-size: 24px;
-    line-height: 1;
+    line-height: 1 !important;
     color: ${colors.gray};
     font-variant: all-small-caps;
   `}>
-    <Link to={`/note/${date}`}>
+    <Link to={`/note/${date}`} css={css`${rich && 'pointer-events: none;'}`}>
       {new Date(date).toLocaleString()}
     </Link>
   </h2>
@@ -54,11 +52,11 @@ const DateTitle = ({ date }) => (
 const MarkdownText = ({ text, rich }) => (
   <ReactMarkdown css={css`
     color: ${colors.black} !important;
-    padding: 0 48px 0 0;
     width: calc(100% - 48px);
-    ${!rich && 'max-height: 48px'};
     margin-bottom: 8px;
     overflow: hidden;
+    overflow-wrap: break-word;
+    ${!rich && 'max-height: 96px'};
   `}>
     {text}
   </ReactMarkdown>
@@ -70,7 +68,7 @@ export const Box = ({ item, onDelete, rich }) => {
 
   return (
     <Wrapper>
-      <DateTitle {...{ date }} />
+      <DateTitle {...{ date, rich }} />
       <MarkdownText {...{ text, rich }} />
       <DeleteNoteButton {...{ deleteNote }} />
     </Wrapper>
