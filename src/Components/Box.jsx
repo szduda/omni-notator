@@ -2,6 +2,7 @@
 import { Link } from 'react-router-dom';
 import { jsx, css, } from '@emotion/core'
 import { colors, Flex, FAB, Icons } from '../theme'
+import ReactMarkdown from 'react-markdown'
 
 const Wrapper = ({ collapsed, ...rest }) => (
   <Flex.Col
@@ -30,12 +31,12 @@ const DeleteNoteButton = ({ deleteNote }) => (
     top
     onClick={deleteNote}
     css={css`
-    box-shadow: none; 
-    background: ${colors.grayLighter}; 
-    border: none; 
-    right: 8px; 
-    top: 8px;
-    z-index: 100;
+      box-shadow: none; 
+      background: ${colors.grayLighter}; 
+      border: none; 
+      right: 8px; 
+      top: 8px;
+      z-index: 100;
   `}>
     <Icons.Delete />
   </FAB>
@@ -55,22 +56,18 @@ const DateTitle = ({ date }) => (
   </h2>
 )
 
-const MarkdownText = ({ text, rich }) => {
-  return (
-    <p css={css`
-      color: ${colors.black} !important;
-      padding: 0 48px 16px 0;
-      width: calc(100% - 48px);
-      ${rich ? 'overflow-y: auto' : 'overflow: hidden'};
-      ${rich ? 'min-height: 60%' : 'min-height: 24px'};
-      ${rich && 'flex-grow: 1;'}
-      ${!rich && 'text-overflow: ellipsis;'}
-      white-space: ${rich ? 'pre-line' : 'nowrap'};
+const MarkdownText = ({ text, rich }) => (
+  <ReactMarkdown css={css`
+    color: ${colors.black} !important;
+    padding: 0 48px 0 0;
+    width: calc(100% - 48px);
+    ${!rich && 'max-height: 48px'};
+    margin-bottom: 8px;
+    overflow: hidden;
   `}>
-      {text}
-    </p>
-  )
-}
+    {text}
+  </ReactMarkdown>
+)
 
 export const Box = ({ item, onDelete, rich }) => {
   const { date, markdownText: text, } = item || {}

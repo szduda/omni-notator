@@ -150,7 +150,6 @@ export const Theme = props => (
       letter-spacing: -0.6px;
       font-weight: 300;
       margin: 0 0 8px 0;
-      color: ${colors.white};
     }
 
     a, a:visited, a:active {
