@@ -19,11 +19,11 @@ const Textbox = ({ label = '', wide = false, ...props }) => (
     position: relative;
     width: ${wide ? '100%' : 'auto'};
   `}>
-    {/* <input type="text" {...props} /> */}
     <textarea
       placeholder={label}
       css={css`
         height: 24px;
+        resize: none;
       `} {...props} />
   </label>
 )
@@ -42,7 +42,9 @@ export const AddNoteForm = ({ onSubmit, formVisible, ...rest }) => {
 
   const submit = e => {
     e.preventDefault();
-    return validate(item, setValid) && onSubmit({...item, date: Date.now()})
+    const result = validate(item, setValid) && onSubmit({ ...item, date: Date.now() })
+    setItem({ markdownText: '' })
+    return result;
   }
 
   return (

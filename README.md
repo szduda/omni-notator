@@ -9,3 +9,4 @@ then run the app with `yarn start`.
 - [x] add form
 - [ ] parse markdown
 - [ ] browser router
+- [ ] gql server
