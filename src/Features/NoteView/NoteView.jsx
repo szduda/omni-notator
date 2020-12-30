@@ -17,13 +17,13 @@ export const NotelistLink = () => (
     to="/"
     css={css`
       align-self: flex-end;
-      right: 8px;
+      right: unset;
       cursor: pointer;
       z-index: 1000;
       position: fixed;
       top: 16px;
       display: flex;
-      padding: 8px;
+      padding: 8px 12px;
       margin: 0;
       color: ${colors.yellow} !important;
   `}>
