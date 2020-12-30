@@ -18,11 +18,6 @@ const Wrapper = ({ collapsed, ...rest }) => (
       box-shadow: 0 2px 4px 0 ${colors.grayDark}44;
       position: relative;
       overflow: hidden;
-      transition: opacity 200ms ease-out 200ms;
-
-      > * {
-        flex-shrink: 0;
-      }
     `} {...rest} />
 )
 

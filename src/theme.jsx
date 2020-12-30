@@ -1,7 +1,6 @@
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core'
 import { ReactComponent as AddIcon } from './assets/icons/add.svg';
-import { ReactComponent as CloseIcon } from './assets/icons/close.svg';
 import { ReactComponent as ExclamationIcon } from './assets/icons/exclamation.svg';
 import { ReactComponent as DeleteIcon } from './assets/icons/delete.svg';
 import { forwardRef } from 'react';
@@ -25,26 +24,11 @@ export const colors = {
 export const Icons = {
   Add: ({ color = colors.white, ...rest }) =>
     <AddIcon css={css`fill: ${color}`} {...rest} />,
-  Close: () => <CloseIcon css={css`fill: ${colors.white}`} />,
   Exclamation: ({ color = colors.red, ...rest }) =>
     <ExclamationIcon css={css`fill: ${color}`} {...rest} />,
   Delete: ({ color = colors.white, ...rest }) =>
     <DeleteIcon css={css`fill: ${color}`} {...rest} />,
 }
-
-const Row = ({ align, valign, wide, wrap, grow, ...props }) => (
-  <div css={css`
-    display: flex;
-    justify-content: ${align || 'space-between'};
-    align-notes: ${valign || 'flex-start'};
-    ${grow && `flex-grow: ${grow};`}
-    width: ${wide ? '100%' : 'auto'};
-    ${wrap && 'flex-wrap: wrap;'}
-    >:last-of-type {
-      margin-right: 0 !important;
-    }
-  `} {...props} />
-)
 
 const Col = forwardRef(({ align, valign, ...props }, ref) => (
   <div 
@@ -58,7 +42,6 @@ const Col = forwardRef(({ align, valign, ...props }, ref) => (
 ))
 
 export const Flex = {
-  Row,
   Col
 }
 
@@ -79,10 +62,6 @@ export const Theme = props => (
       z-index: 1000;
       width: 100%;
       max-width: 800px;
-    }
-
-    main {
-      min-height: 100vh;
     }
     
     div {
@@ -147,7 +126,6 @@ export const Theme = props => (
     p {
       font-size: 16px;
       line-height: 24px;
-      letter-spacing: -0.6px;
       font-weight: 300;
       margin: 0 0 8px 0;
     }
