@@ -29,7 +29,10 @@ export const useNoteView = ({ DataService }) => {
       setNote(currentNote)
     }, [dateParam, getters])
 
-    const deleteNote = () => actions.notelist.deleteNote({ date: note?.date })
+    const deleteNote = () => {
+      actions.notelist.deleteNote({ date: note?.date })
+      DataService.deleteNote({ date: note?.date })
+    }
     const redirectGuard = !shouldRefresh && !!!note && <Redirect to={'/'} />
 
     return { note, deleteNote, redirectGuard }
