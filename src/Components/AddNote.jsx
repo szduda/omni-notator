@@ -6,7 +6,7 @@ import { colors, Icons, Button, RoundButton } from '../theme'
 export const AddFormTrigger = props => (
   <div css={css`
     align-self: flex-end;
-    margin-right: 64px;
+    margin-right: 56px;
   `}>
     <RoundButton top css={css`position: fixed; right: unset;`} {...props}>
       <Icons.Add color={colors.yellow} />
