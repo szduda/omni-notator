@@ -7,15 +7,16 @@ export const notelistReducer = (state, action) => {
     case 'addNote':
       return {
         ...state,
-        [payload.note.id]: payload.note
+        [payload.note.date]: payload.note
       }
     case 'setNotes':
       return {
         ...payload.notes
       }
     case 'deleteNote':
+      const {[payload.date]: removed, ...rest} = state
       return {
-        ...Object.keys(state).map(x => state[x]).filter(n => n.id !== payload.id),
+        ...rest
       }
 
     default:
@@ -41,3 +42,7 @@ export const notelistActions = {
     payload
   }),
 }
+
+export const useNotelistGetters = ({ notelist }) => ({
+  getNote: ({ date }) => notelist[date]
+})

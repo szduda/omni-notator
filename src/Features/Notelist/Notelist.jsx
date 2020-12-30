@@ -1,13 +1,13 @@
 /** @jsx jsx */
 import { useRef, forwardRef } from 'react'
 import { jsx, css, } from '@emotion/core'
-import { Box } from './Box'
+import { Box } from '../../Components/Box'
 import { sortByDate } from '../../appHelper'
-import { AddNoteForm, AddFormTrigger } from './AddNote'
+import { AddNoteForm, AddFormTrigger } from '../../Components/AddNote'
 
 const Wrapper = forwardRef((props, ref) => (
   <div ref={ref} css={css`
-  padding: 64px 4px calc(100vh - 160px);
+  padding: 68px 4px 64px;
   display: flex;
   flex-direction: column;
   `} {...props} />
@@ -19,7 +19,9 @@ export const Notelist = ({ useNotelistContext }) => {
 
   const addNoteClick = () => {
     setVisibility({ form: !visibility.form })
-    formRef.current.scrollIntoView({behavior: 'smooth'})
+    if (visibility.form) {
+      formRef.current.scrollIntoView({ block: 'start', behavior: 'smooth' })
+    }
   }
 
   const submitForm = item => {

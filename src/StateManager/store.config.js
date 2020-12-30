@@ -3,6 +3,7 @@ import {
   defaultState as notelistDefault,
   notelistReducer,
   notelistActions,
+  useNotelistGetters,
 } from '../Features/Notelist/notelist.store'
 
 export const initialState = {
@@ -16,6 +17,7 @@ export const reducer = ({ notelist }, action) => {
 }
 
 export const useMyGetters = state => ({
+  ...useNotelistGetters(state)
 })
 
 const useNotelistActions = dispatch => useActions(dispatch, notelistActions)

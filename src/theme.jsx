@@ -1,9 +1,9 @@
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core'
-import { ReactComponent as AddIcon } from '../assets/icons/add.svg';
-import { ReactComponent as CloseIcon } from '../assets/icons/close.svg';
-import { ReactComponent as ExclamationIcon } from '../assets/icons/exclamation.svg';
-import { ReactComponent as DeleteIcon } from '../assets/icons/delete.svg';
+import { ReactComponent as AddIcon } from './assets/icons/add.svg';
+import { ReactComponent as CloseIcon } from './assets/icons/close.svg';
+import { ReactComponent as ExclamationIcon } from './assets/icons/exclamation.svg';
+import { ReactComponent as DeleteIcon } from './assets/icons/delete.svg';
 import { forwardRef } from 'react';
 
 export const colors = {
@@ -151,6 +151,15 @@ export const Theme = props => (
       font-weight: 300;
       margin: 0 0 8px 0;
       color: ${colors.white};
+    }
+
+    a, a:visited, a:active {
+      color: inherit;
+      text-decoration: none;
+    }
+    
+    a:hover {
+      text-decoration: underline;
     }
   `} {...props} />
 )

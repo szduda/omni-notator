@@ -1,6 +1,7 @@
 /** @jsx jsx */
+import { Link } from 'react-router-dom';
 import { jsx, css } from '@emotion/core'
-import { colors } from '../theme'
+import { colors } from '../../theme'
 
 const Wrapper = props => (
   <div css={css`
@@ -12,7 +13,8 @@ const Wrapper = props => (
 )
 
 const Title = () => (
-  <h1 css={css`
+  <Link to="/">
+    <h1 css={css`
     display: inline-flex;
     flex-direction: column; 
     margin: 0;
@@ -20,8 +22,9 @@ const Title = () => (
     font-size: 24px;
     line-height: 1.5;
   `}>
-    omni notator
+      omni notator
   </h1>
+  </Link>
 )
 
 export const Header = () => {
