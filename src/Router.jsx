@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, BrowserRouter } from 'react-router-dom';
+import { Route, BrowserRouter, Redirect, Switch } from 'react-router-dom';
 import { DataService } from './DataService'
 import { useNotelist } from './Features/Notelist/useNotelist'
 import { useNoteView } from './Features/NoteView/useNoteView'
@@ -14,8 +14,11 @@ export default () => (
       <Header />
     </header>
     <main>
-      <Route path='/note/:date' component={NoteView} />
-      <Route exact path='/' component={Notelist} />
+      <Switch>
+        <Route path='/note/:date' component={NoteView} />
+        <Route exact path='/' component={Notelist} />
+        <Redirect to="/" />
+      </Switch>
     </main>
   </BrowserRouter>
 )
